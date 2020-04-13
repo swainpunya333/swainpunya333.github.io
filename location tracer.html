@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <script src="https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css" rel="stylesheet" />
+   <style>
+	body { margin: 0; padding: 0; }
+	#map { position: absolute; top: 20px; bottom: 0; width: 100%; }
+</style>
+        </head>
+<body>
+<div id="map"></div>
+    <button id="fly">Fly</button>
+
+
+<button onclick="getLocation()">show</button>
+
+<script>
+    var c=0;
+        var lk,lon;
+    
+ var lkk= prompt("enter email");
+ 
+    
+   
+ 
+function getLocation() {
+ var cordiref= firebase.database().ref("cordi/userlogindata/");
+        cordiref.orderByChild("email").equalTo(lkk).on("child_added", function(data){
+          var newVok= data.val();
+            var today = new Date();
+            var fg= today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+            var tyu= today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
+            
+            
+               mapboxgl.accessToken = 'pk.eyJ1IjoiYXJ5YW5wYXRlbDc3NTEiLCJhIjoiY2s4b2t3bjgyMHYyNjNlbzI4Y3FmdjBwdiJ9.uszMPUQr07Wi3mo5wYi3Uw';
+var map = new mapboxgl.Map({
+container: 'map',
+style: 'mapbox://styles/mapbox/streets-v11',
+center: [-74.5, 40],
+zoom: 15
+
+});
+ 
+document.getElementById('fly').addEventListener('click', function() {
+// Fly to a random location by offsetting the point -74.50, 40
+// by up to 5 degrees.
+map.flyTo({
+center: [
+newVok.plongi,
+newVok.plati
+],
+    
+essential: true // this animation is considered essential with respect to prefers-reduced-motion
+});
+});
+            
+            });
+}
+    
+</script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-database.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+    var config = {
+   apiKey: "AIzaSyA17Lt8Lan6mxowJ8WVHut7XZflvxj1Bw0",
+    authDomain: "final-d0048.firebaseapp.com",
+    databaseURL: "https://final-d0048.firebaseio.com",
+    projectId: "final-d0048",
+    storageBucket: "final-d0048.appspot.com",
+    messagingSenderId: "992926141763",
+    appId: "1:992926141763:web:7f98aed547ac8f8322f3f6",
+    measurementId: "G-9BLNTXGWT1"
+  };
+     firebase.initializeApp(config);
+    console.log(firebase);
+  
+    
+    
+      // Set the configuration for your app
+  // TODO: Replace with your project's config object
+  
+ 
+
+  // Get a reference to the database service
+  
+        
+</script>
+
+</body>
+</html>
