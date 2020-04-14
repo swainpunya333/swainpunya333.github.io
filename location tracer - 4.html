@@ -11,17 +11,23 @@
         </head>
 <body>
 <div id="map"></div>
-    <button id="fly">Fly</button>
+   
 
-
-<button onclick="getLocation()">show</button>
+<button onclick="getLocation()"  id="kk" style="position: absolute; top: 50%;left: 50%;background-color: greenyellow;border-radius: 12px">show</button>
 
 <script>
     var c=0;
         var lk,lon;
     
  var lkk= prompt("enter email");
- 
+  var fg= document.getElementById("kk");
+    if(fg.style.display==="none"){
+        fg.style.display="block";
+        
+        
+    }else{
+        fg.style.display="none";
+    }
     
    
  
@@ -33,27 +39,31 @@ function getLocation() {
             var fg= today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
             var tyu= today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
             
-            
-               mapboxgl.accessToken = 'pk.eyJ1IjoiYXJ5YW5wYXRlbDc3NTEiLCJhIjoiY2s4b2t3bjgyMHYyNjNlbzI4Y3FmdjBwdiJ9.uszMPUQr07Wi3mo5wYi3Uw';
+            mapboxgl.accessToken = 'pk.eyJ1IjoiYXJ5YW5wYXRlbDc3NTEiLCJhIjoiY2s4b2t3bjgyMHYyNjNlbzI4Y3FmdjBwdiJ9.uszMPUQr07Wi3mo5wYi3Uw';
 var map = new mapboxgl.Map({
 container: 'map',
 style: 'mapbox://styles/mapbox/streets-v11',
-center: [-74.5, 40],
-zoom: 15
+center: [newVok.plongi,
+newVok.plati],
+zoom: 16
 });
  
-document.getElementById('fly').addEventListener('click', function() {
-// Fly to a random location by offsetting the point -74.50, 40
-// by up to 5 degrees.
-map.flyTo({
-center: [
+var marker = new mapboxgl.Marker();
+ 
+
+ 
+// Update the data to a new position based on the animation timestamp. The
+// divisor in the expression `timestamp / 1000` controls the animation speed.
+marker.setLngLat([
 newVok.plongi,
 newVok.plati
-],
-    
-essential: true // this animation is considered essential with respect to prefers-reduced-motion
-});
-});
+]);
+ 
+// Ensure it's added to the map. This is safe to call if it's already added.
+marker.addTo(map);
+ 
+
+              
             
             });
 }
