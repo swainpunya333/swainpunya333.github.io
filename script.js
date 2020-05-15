@@ -41,14 +41,29 @@ function loadLabeledImages() {
     labels.map(async label => {
       const descriptions = []
       for (let i = 1; i <= 2; i++) {
-        const img = await faceapi.fetchImage(`https://firebasestorage.googleapis.com/v0/b/friendlychat-55f4c.appspot.com/o/labeled_images%2F${label}%2F${i}.jpg?alt=media&token=978d301e-7410-452d-8749-4b481cc6ab28`)
-          
-          //labeled_images/${label}/${i}.jpg
+          storageRef.child('labeled_images/${label}/${i}.jpg').getDownloadURL().then(function(url) {
+        const img = await faceapi.fetchImage(url)
         const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor()
         descriptions.push(detections.descriptor)
+          });
       }
 
       return new faceapi.LabeledFaceDescriptors(label, descriptions)
     })
   )
 }
+
+  var firebaseConfig = {
+    apiKey: "AIzaSyDXQixVgedAZmg8uFHlbVK5LaZiqghf7tw",
+    authDomain: "friendlychat-55f4c.firebaseapp.com",
+    databaseURL: "https://friendlychat-55f4c.firebaseio.com",
+    projectId: "friendlychat-55f4c",
+    storageBucket: "friendlychat-55f4c.appspot.com",
+    messagingSenderId: "1061156891120",
+    appId: "1:1061156891120:web:f884b1e126b62cbf7e5535",
+    measurementId: "G-EZSBC50K62"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
