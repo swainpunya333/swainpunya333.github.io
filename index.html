@@ -1,34 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login form 2 </title>
-<link rel="stylesheet" type="text/css" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script defer src="face-api.min.js"></script>
+  <script defer src="script.js"></script>
+  <title>Face Recognition</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column
+    }
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  </style>
 </head>
 <body>
-
-  <section class="login-page">
-  	 <form>
-  	 	 <div class="box">
-  	 	 	   <div class="form-head">
-  	 	 	   	  <a href="location%20tracer.html" style="text-decoration: none;color: gold; font-size: 20px">Location tracker locality</a>
-                   <br><br><br>
-                    <a href="location%20tracer%20-%204.html" style="text-decoration: none;color: gold; font-size: 20px">Location tracker 4km far</a>
-                   <br><br><br>
-                   <a href="corona%20patient%20cordinate.html" style="text-decoration: none;color: gold; font-size: 20px">Corona Patient Cordinate</a>
-                   <br><br><br>
-                   <a href="corona%20patient%20cordinate%20-%204.html" style="text-decoration: none;color: gold; font-size: 20px">Corona Patient Cordinate 4km range</a>
-                   <br><br><br>
-                   <a href="person%20came%20in%20covid%20paitients%20path.html" style="text-decoration: none;color: gold; font-size: 20px">Pesrsons came in contact with covid paitients</a>
-                   <br><br><br>
-                   <a href="person%20came%20in%20covid%20paitients%20path%204.html" style="text-decoration: none;color: gold; font-size: 20px">Pesrsons came in contact with covid paitients 4km range</a>
-                   <br><br><br>
-                   
-  	 	 	   </div>
-  	 	 </div>
-  	 </form>
-  </section>
-
+  <input type="file" id="imageUpload">
 </body>
 </html>
