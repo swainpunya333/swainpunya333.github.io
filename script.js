@@ -41,11 +41,16 @@ function loadLabeledImages() {
     labels.map(async label => {
       const descriptions = []
       for (let i = 1; i <= 2; i++) {
-          storageRef.child('labeled_images/${label}/${i}.jpg').getDownloadURL().then(function(url) {
-        const img = await faceapi.fetchImage(url)
+          var storage = firebase.storage();
+          var pathReference = storage.ref(`labeled_images/${label}/${i}.jpg`);
+          pathReference.getDownloadURL().then(function(url) {
+              sessionStorage.setItem("key",url);
+              })
+         const urll= sessionStorage.getItem("key");
+        const img = await faceapi.fetchImage(`${urll}`)
         const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor()
         descriptions.push(detections.descriptor)
-          });
+          
       }
 
       return new faceapi.LabeledFaceDescriptors(label, descriptions)
