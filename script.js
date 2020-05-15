@@ -36,12 +36,14 @@ async function start() {
 }
 
 function loadLabeledImages() {
-  const labels = ['Aryan Patel','Raj Das']
+  const labels = ['Aryan Patel']
   return Promise.all(
     labels.map(async label => {
       const descriptions = []
       for (let i = 1; i <= 2; i++) {
-        const img = await faceapi.fetchImage(`labeled_images/${label}/${i}.jpg`)
+        const img = await faceapi.fetchImage(`https://firebasestorage.googleapis.com/v0/b/friendlychat-55f4c.appspot.com/o/labeled_images%2F${label}%2F${i}.jpg?alt=media&token=978d301e-7410-452d-8749-4b481cc6ab28`)
+          
+          //labeled_images/${label}/${i}.jpg
         const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor()
         descriptions.push(detections.descriptor)
       }
